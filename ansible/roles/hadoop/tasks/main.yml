@@ -1,0 +1,49 @@
+---
+- name: set Cloudera on yum repository
+  template: src=cloudera-cdh4.repo dest=/etc/yum.repos.d/cloudera-cdh4.repo owner=root group=root mode=0644
+
+- name: install yarn
+  yum: name=hadoop-conf-pseudo state=present
+
+- name: set JAVA_HOME environment variable
+  lineinfile: dest=/etc/hadoop/conf/hadoop-env.sh state=present regexp="export JAVA_HOME=.*" line="export JAVA_HOME=/opt/jdk1.7.0_79"
+
+#- name: format hdfs namenode
+#  command: sudo -u hdfs hdfs namenode -format
+
+- name: run
+  sudo: yes
+  command: service {{item}} start
+  with_items:
+    - hadoop-hdfs-datanode
+    - hadoop-hdfs-namenode
+    - hadoop-hdfs-secondarynamenode
+
+- name: make /tmp directory on hdfs
+  command: sudo -u hdfs hadoop fs -mkdir /tmp && sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+
+- name: make directory /var/log/hadoop-yarn on hdfs
+  command: sudo -u hdfs hadoop fs -mkdir /var/log/hadoop-yarn
+
+- name: chown /var/log/hadoop-yarn on hdfs
+  command: sudo -u hdfs hadoop fs -chown yarn:mapred /var/log/hadoop-yarn
+
+- name: make directory /tmp/hadoop-yarn/staging on hdfs
+  command: sudo -u hdfs hadoop fs -mkdir /tmp/hadoop-yarn/staging && sudo -u hdfs hadoop fs -chmod -R 1777 /tmp/hadoop-yarn/staging
+
+- name: make directory /tmp/hadoop-yarn/staging/history/done_intermediate
+  command: sudo -u hdfs hadoop fs -mkdir /tmp/hadoop-yarn/staging/history/done_intermediate && sudo -u hdfs hadoop fs -chmod -R 1777 /tmp/hadoop-yarn/staging/history/done_intermediate
+
+- name: chown /tmp/hadoop-yarn/staging
+  command: sudo -u hdfs hadoop fs -chown -R mapred:mapred /tmp/hadoop-yarn/staging
+
+- name: mkdir for vagrant user
+  command: sudo -u hdfs hadoop fs -mkdir /user/vagrant && sudo -u hdfs hadoop fs -chown vagrant:vagrant /user/vagrant
+
+- name: start yarn daemon
+  command: service {{item}} start
+  with_items:
+  - hadoop-yarn-resourcemanager
+  - hadoop-yarn-nodemanager
+  - hadoop-mapreduce-historyserver
+

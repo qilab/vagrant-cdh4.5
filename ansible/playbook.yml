@@ -1,0 +1,9 @@
+---
+- hosts: cdh
+  user: vagrant
+  sudo: yes
+  roles:
+    - common
+    # - jdk7
+    - hadoop
+
