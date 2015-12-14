@@ -1,0 +1,4 @@
+---
+- name: format hdfs namenode
+  command: hdfs namenode -format
+

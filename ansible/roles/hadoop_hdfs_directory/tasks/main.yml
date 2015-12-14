@@ -1,15 +1,4 @@
 ---
-- name: format hdfs namenode
-  command: hdfs namenode -format
-
-- name: run
-  sudo: yes
-  command: service {{item}} start
-  with_items:
-    - hadoop-hdfs-datanode
-    - hadoop-hdfs-namenode
-    - hadoop-hdfs-secondarynamenode
-
 - name: create /tmp directory on hdfs
   command: hadoop fs -mkdir /tmp
 
@@ -42,12 +31,4 @@
 
 - name: chown vagrant user directory
   command: hadoop fs -chown vagrant:vagrant /user/vagrant
-
-- name: start yarn daemon
-  sudo: yes
-  command: service {{item}} start
-  with_items:
-  - hadoop-yarn-resourcemanager
-  - hadoop-yarn-nodemanager
-  - hadoop-mapreduce-historyserver
 

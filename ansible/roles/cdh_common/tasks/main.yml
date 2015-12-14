@@ -1,0 +1,20 @@
+---
+- name: set Cloudera on yum repository
+  template: src=cloudera-cdh4.repo dest=/etc/yum.repos.d/cloudera-cdh4.repo owner=root group=root mode=0644
+
+# optional
+- name: add the Cloudera Public GPG Key
+  command: rpm --import http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
+
+- name: yum clean all
+  shell: yum clean all
+
+- name: install hadoop
+  yum: name=hadoop state=present
+
+- name: install pseudo yarn
+  yum: name=hadoop-conf-pseudo state=present
+
+- name: set JAVA_HOME environment variable
+  lineinfile: dest=/etc/hadoop/conf/hadoop-env.sh state=present regexp="export JAVA_HOME=.*" line="export JAVA_HOME=/opt/jdk1.7.0_79"
+

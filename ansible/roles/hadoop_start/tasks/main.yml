@@ -1,0 +1,8 @@
+---
+- name: start hadoop
+  command: service {{item}} start
+  with_items:
+    - hadoop-hdfs-datanode
+    - hadoop-hdfs-namenode
+    - hadoop-hdfs-secondarynamenode
+

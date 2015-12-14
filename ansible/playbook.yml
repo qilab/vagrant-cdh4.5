@@ -1,9 +1,35 @@
 ---
 - hosts: cdh
-  user: vagrant
+  remote_user: vagrant
   sudo: yes
   roles:
     - common
-    # - jdk7
-    - hadoop
+    - jdk7
+    - cdh_common
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  sudo_user: hdfs
+  roles:
+    - hadoop_namenode
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - hadoop_start
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  sudo_user: hdfs
+  roles:
+    - hadoop_hdfs_directory
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - hadoop_start_resourcemanager
 

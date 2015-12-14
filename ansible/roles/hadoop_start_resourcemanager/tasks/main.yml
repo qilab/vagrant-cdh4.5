@@ -1,0 +1,8 @@
+---
+- name: start resourcemanager
+  command: service {{item}} start
+  with_items:
+    - hadoop-yarn-resourcemanager
+    - hadoop-yarn-nodemanager
+    - hadoop-mapreduce-historyserver
+
