@@ -1,0 +1,4 @@
+---
+- name: install hbase-master via yum
+  yum: name=hbase-master state=present
+

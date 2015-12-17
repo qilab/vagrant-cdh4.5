@@ -33,3 +33,9 @@
   roles:
     - hadoop_start_resourcemanager
 
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - hbase_master
+
