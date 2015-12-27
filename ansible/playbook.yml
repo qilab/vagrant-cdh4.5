@@ -37,5 +37,42 @@
   remote_user: vagrant
   sudo: yes
   roles:
+    - zookeeper_server
+  tags:
+    - zookeeper
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  sudo_user: hdfs
+  roles:
+    - hbase_hdfs_directory
+  tags:
+    - hbase
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
     - hbase_master
+    - hbase_regionserver
+    - hbase_config
+  tags:
+    - hbase
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - mariadb
+  tags:
+    - mariadb
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - redis
+  tags:
+    - redis
 

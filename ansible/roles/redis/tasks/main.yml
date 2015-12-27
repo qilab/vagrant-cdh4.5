@@ -1,0 +1,22 @@
+---
+- name: download redis
+  get_url: url=http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
+           dest={{ redis_work_dir }}/redis-{{ redis_version }}.tar.gz
+
+- name: extract redis
+  command: tar xfz {{ redis_work_dir }}/redis-{{ redis_version }}.tar.gz chdir={{ redis_work_dir }}
+
+- name: make distclean
+  command: make distclean chdir={{ redis_work_dir }}/redis-{{ redis_version }}
+
+- name: make Redis
+  command: make chdir={{ redis_work_dir }}/redis-{{ redis_version }}
+
+- name: create redis install directory
+  file: path={{ redis_install_dir }} state=directory
+
+- name: install redis
+  command: make PREFIX={{ redis_install_dir }} install
+           chdir={{ redis_work_dir }}/redis-{{ redis_version }}
+           creates={{ redis_install_dir }}/bin/redis-server
+

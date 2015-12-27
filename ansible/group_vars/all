@@ -4,3 +4,9 @@ download_folder: /opt
 java_home: "{{download_folder}}/jdk1.7.0_79"
 java_archive: "{{download_folder}}/{{download_file}}"
 
+mysql_root_password: "root"
+
+redis_version: 2.8.9
+redis_install_dir: /opt/redis
+redis_work_dir: /usr/local/src
+
