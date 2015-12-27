@@ -1,7 +1,6 @@
----
 download_file: jdk-7u79-linux-x64.tar.gz
 download_url: "http://download.oracle.com/otn-pub/java/jdk/7u79-b15/{{download_file}}"
 download_folder: /opt
-java_name: "{{download_folder}}/jdk1.7.0_79"
+java_home: "{{download_folder}}/jdk1.7.0_79"
 java_archive: "{{download_folder}}/{{download_file}}"
 
