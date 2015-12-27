@@ -15,6 +15,12 @@
 - name: install pseudo yarn
   yum: name=hadoop-conf-pseudo state=present
 
-- name: set JAVA_HOME environment variable
-  lineinfile: dest=/etc/hadoop/conf/hadoop-env.sh state=present regexp="export JAVA_HOME=.*" line="export JAVA_HOME=/opt/jdk1.7.0_79"
+- name: configure HBase in /etc/hbase/conf.dist
+  template: src={{item}} dest=/etc/hbase/conf.pseudo owner=root group=root mode=0644
+  with_items:
+    - core-site.xml
+    - hdfs-site.xml
+    - mapred-site.xml
+    - yarn-site.xml
+    - hadoop-env.sh
 
