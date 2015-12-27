@@ -1,4 +1,12 @@
 ---
-- name: Install libselinux-python
+- name: install libselinux-python
   yum: name=libselinux-python state=present
+
+- name: install dependency modules
+  yum: name={{item}} state=present
+  with_items:
+    - gcc
+    - tcl
+    - make
+    - ruby
 
