@@ -1,0 +1,7 @@
+---
+- name: restart hbase-master
+  service: name=hbase-master state=restarted
+
+- name: restart hbase-regionserver
+  service: name=hbase-regionserver state=restarted
+

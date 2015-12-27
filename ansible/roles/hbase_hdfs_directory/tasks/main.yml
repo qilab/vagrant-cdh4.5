@@ -1,0 +1,8 @@
+---
+- name: create /hbase directory on hdfs
+  command: hadoop fs -mkdir /hbase
+  ignore_errors: true
+
+- name: chown /hbase on hdfs
+  command: hadoop fs -chown hbase:hbase /hbase
+

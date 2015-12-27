@@ -1,0 +1,17 @@
+---
+- name: configure HBase in /etc/hbase/conf.dist
+  template: src={{item}} dest=/etc/hbase/conf.dist owner=root group=root mode=0644
+  with_items:
+    - hbase-env.sh
+    - hbase-site.xml
+    - regionservers
+  notify:
+    - restart hbase-master
+    - restart hbase-regionserver
+
+- name: ensure HBase is running
+  service: name={{item}} state=started enabled=yes
+  with_items:
+    - hbase-master
+    - hbase-regionserver
+

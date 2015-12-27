@@ -1,0 +1,4 @@
+---
+- name: install hbase-regionserver via yum
+  yum: name=hbase-regionserver state=present
+
