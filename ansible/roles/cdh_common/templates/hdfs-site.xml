@@ -48,4 +48,8 @@
      <name>dfs.datanode.data.dir</name>
      <value>file:///var/lib/hadoop-hdfs/cache/${user.name}/dfs/data</value>
   </property>
+  <property>
+    <name>dfs.permissions.enabled</name>
+    <value>false</value>
+  </property>
 </configuration>
