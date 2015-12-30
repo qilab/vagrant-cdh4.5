@@ -1,0 +1,10 @@
+---
+- name: install dependent repositories
+  get_url:
+    url=https://bintray.com/sbt/rpm/rpm
+    dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
+    mode=0644
+
+- name: install dependent libraries
+  yum: name=sbt state=present
+

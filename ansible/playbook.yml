@@ -76,3 +76,11 @@
   tags:
     - redis
 
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
+    - sbt
+  tags:
+    - sbt
+
