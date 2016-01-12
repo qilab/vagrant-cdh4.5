@@ -15,8 +15,8 @@
 - name: install pseudo yarn
   yum: name=hadoop-conf-pseudo state=present
 
-- name: configure HBase in /etc/hbase/conf.dist
-  template: src={{item}} dest=/etc/hbase/conf.pseudo owner=root group=root mode=0644
+- name: configure Hadoop in /etc/hadoop/conf.pseudo
+  template: src={{item}} dest=/etc/hadoop/conf.pseudo owner=root group=root mode=0644
   with_items:
     - core-site.xml
     - hdfs-site.xml
