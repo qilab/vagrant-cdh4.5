@@ -43,4 +43,9 @@
     <value>*</value>
   </property>
 
+  <property>
+    <name>topology.script.file.name</name>
+    <value>/etc/hadoop/conf/topology.sh</value>
+  </property>
+
 </configuration>

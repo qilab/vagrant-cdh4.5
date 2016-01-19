@@ -23,4 +23,10 @@
     - mapred-site.xml
     - yarn-site.xml
     - hadoop-env.sh
+    - topology.data
+
+- name: put topology.sh in /etc/hadoop/conf.pseudo (it must be executable)
+  template: src={{item}} dest=/etc/hadoop/conf.pseudo owner=root group=root mode=0755
+  with_items:
+    - topology.sh
 
