@@ -2,6 +2,21 @@
 - name: install libselinux-python
   yum: name=libselinux-python state=present
 
+- name: disable SELinux with command
+  shell: setenforce 0
+
+- name: disable SELinux config
+  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+
+- name: iptables stop
+  command: /etc/rc.d/init.d/iptables stop
+
+- name: chkconfig iptables off
+  command: chkconfig iptables off
+
+- name: chkconfig ip6tables off
+  command: chkconfig ip6tables off
+
 - name: install dependency modules
   yum: name={{item}} state=present
   with_items:
