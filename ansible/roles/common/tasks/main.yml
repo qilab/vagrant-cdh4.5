@@ -6,6 +6,8 @@
   yum: name={{item}} state=present
   with_items:
     - gcc
+    - kernel-devel
+    - perl
     - tcl
     - make
     - ruby
