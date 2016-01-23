@@ -10,6 +10,7 @@
     - perl
     - tcl
     - make
+    - wget
     - ruby
     - git
 
