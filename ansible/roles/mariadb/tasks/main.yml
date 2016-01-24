@@ -18,3 +18,6 @@
     host: localhost
     password: "{{mysql_root_password}}"
 
+- name: put .my.cnf
+  template: src=.my.cnf dest=/root/.my.cnf owner=root mode=0600
+

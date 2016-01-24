@@ -64,17 +64,17 @@
   remote_user: vagrant
   sudo: yes
   roles:
-    - hive
+    - mariadb
   tags:
-    - hive
+    - mariadb
 
 - hosts: cdh
   remote_user: vagrant
   sudo: yes
   roles:
-    - mariadb
+    - hive
   tags:
-    - mariadb
+    - hive
 
 - hosts: cdh
   remote_user: vagrant

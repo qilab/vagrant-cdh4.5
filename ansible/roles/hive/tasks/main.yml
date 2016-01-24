@@ -4,6 +4,26 @@
   with_items:
     - hive
     - hive-server2
+    - hive-metastore
+    - mysql-connector-java
+
+- name: make symbolic link
+  file: src=/usr/share/java/mysql-connector-java.jar dest=/usr/lib/hive/lib/mysql-connector-java.jar state=link
+
+- name: create MySQL database for Hive metastore
+  mysql_db:
+    name: hive
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+    state: present
+
+- name: create hive user on MySQL
+  mysql_user:
+    name: hive
+    host: localhost
+    password: hive
+    priv: "hive.*:ALL"
+    state: present
 
 - name: configre Hive
   template: src={{item}} dest=/etc/hive/conf/hive-site.xml group=hive owner=hive mode=644
