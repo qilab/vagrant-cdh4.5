@@ -1,0 +1,15 @@
+---
+- name: install hive via yum
+  yum: name={{item}} state=present
+  with_items:
+    - hive
+    - hive-server2
+
+- name: configre Hive
+  template: src={{item}} dest=/etc/hive/conf/hive-site.xml group=hive owner=hive mode=644
+  with_items:
+    - hive-site.xml
+
+- name: configure hive-server2
+  template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=644
+
