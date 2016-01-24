@@ -28,4 +28,5 @@
     - wget
     - ruby
     - git
+    - vim
 
