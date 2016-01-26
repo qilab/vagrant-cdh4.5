@@ -16,6 +16,8 @@ Vagrant.configure(2) do |config|
 
   #config.vm.synced_folder "../../../git", "/git", mount_options: ['dmode=775', 'fmode=664']
 
+  config.ssh.insert_key = false
+
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
     ansible.playbook = "ansible/playbook.yml"
