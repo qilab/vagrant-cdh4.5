@@ -1,7 +1,7 @@
 # vagrant-cdh4.5
 
-* CentOS 6.7
-* CDH 4.5 in Pseudo-distributed Mode
+* CentOS 6.7 as a guest OS
+* CDH 4.5 (YARN) in Pseudo-distributed Mode
 * HBase in Pseudo-distributed Mode
 * Hive
 * MariaDB
