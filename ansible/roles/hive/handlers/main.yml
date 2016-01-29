@@ -1,0 +1,7 @@
+---
+- name: start hive-server2
+  service: name=hive-server2 state=started
+
+- name: start hive-metastore
+  service: name=hive-metastore state=started
+

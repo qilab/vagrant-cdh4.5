@@ -32,4 +32,7 @@
 
 - name: configure hive-server2
   template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=644
+  notify:
+  - start hive-server2
+  - start hive-metastore
 

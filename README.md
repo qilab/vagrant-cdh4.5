@@ -13,8 +13,3 @@
 * Vagrant 1.7.0 or later
 * Ansible 1.9.0 or later
 
-### Hive
-Start HiveServer2
-```
-hive --service hiveserver2
-```
