@@ -5,10 +5,9 @@
     - hive
     - hive-server2
     - hive-metastore
-    - mysql-connector-java
 
 - name: make symbolic link
-  file: src=/usr/share/java/mysql-connector-java.jar dest=/usr/lib/hive/lib/mysql-connector-java.jar state=link
+  file: src={{mysql_connector_java_jar}} dest=/usr/lib/hive/lib/mysql-connector-java.jar state=link
 
 - name: create MySQL database for Hive metastore
   mysql_db:
@@ -33,6 +32,6 @@
 - name: configure hive-server2
   template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=644
   notify:
-  - start hive-server2
-  - start hive-metastore
+    - start hive-server2
+    - start hive-metastore
 

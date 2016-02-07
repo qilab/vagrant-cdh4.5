@@ -1,0 +1,14 @@
+---
+- name: download mysql-connector-java
+  get_url:
+    url={{ mysql_connector_java_url }}
+    dest={{ mysql_connector_java_archive }}
+
+- name: unpack archive
+  command: "tar -zxf {{ mysql_connector_java_archive }} -C {{ download_folder }}"
+  args:
+    creates: "{{ mysql_connector_java_home }}"
+
+- name: fix ownership
+  file: state=directory path={{ mysql_connector_java_home }} owner=root group=root recurse=yes
+

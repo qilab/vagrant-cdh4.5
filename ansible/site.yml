@@ -72,6 +72,14 @@
   remote_user: vagrant
   sudo: yes
   roles:
+    - mysql_connector_java
+  tags:
+    - mysql_connector_java
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
     - hive
   tags:
     - hive

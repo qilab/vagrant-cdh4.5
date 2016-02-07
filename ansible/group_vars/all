@@ -6,6 +6,13 @@ java_archive: "{{download_folder}}/{{download_file}}"
 
 mysql_root_password: "root"
 
+mysql_connector_java_version: 5.1.38
+mysql_connector_java_file: "mysql-connector-java-{{mysql_connector_java_version}}.tar.gz"
+mysql_connector_java_url: "http://cdn.mysql.com/Downloads/Connector-J/{{mysql_connector_java_file}}"
+mysql_connector_java_archive: "{{download_folder}}/{{mysql_connector_java_file}}"
+mysql_connector_java_home: "{{download_folder}}/mysql-connector-java-{{mysql_connector_java_version}}"
+mysql_connector_java_jar: "{{mysql_connector_java_home}}/mysql-connector-java-{{mysql_connector_java_version}}-bin.jar"
+
 redis_version: 2.8.9
 redis_install_dir: /opt/redis
 redis_work_dir: /usr/local/src
