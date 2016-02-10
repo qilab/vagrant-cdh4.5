@@ -12,6 +12,9 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 8192
     v.cpus = 2
+    # for DNS
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   #config.vm.synced_folder "../../../git", "/git", mount_options: ['dmode=775', 'fmode=664']

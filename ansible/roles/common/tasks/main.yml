@@ -22,31 +22,6 @@
 - name: disable SELinux config
   lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
 
-- name: check whether /etc/sysconfig/network-scripts/ifcfg-eth0 contains DNS1
-  command: grep -Gq "^DNS1" /etc/sysconfig/network-scripts/ifcfg-eth0
-  register: check_DNS1
-  always_run: yes
-  ignore_errors: yes
-  changed_when: no
-
-- name: check whether /etc/sysconfig/network-scripts/ifcfg-eth0 contains DNS2
-  command: grep -Gq "^DNS2" /etc/sysconfig/network-scripts/ifcfg-eth0
-  register: check_DNS2
-  always_run: yes
-  ignore_errors: yes
-  changed_when: no
-
-- name: set DNS1
-  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-eth0 insertafter=EOF line=DNS1=8.8.8.8
-  when: check_DNS1.rc != 0
-
-- name: set DNS2
-  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-eth0 insertafter=EOF line=DNS2=8.8.4.4
-  when: check_DNS2.rc != 0
-
-- name: restart network
-  service: name=network state=restarted
-
 - name: install dependency modules
   yum: name={{item}} state=present
   with_items:
