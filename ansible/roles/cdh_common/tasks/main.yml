@@ -15,8 +15,11 @@
 - name: install pseudo yarn
   yum: name=hadoop-conf-pseudo state=present
 
-- name: configure Hadoop in /etc/hadoop/conf.pseudo
-  template: src={{item}} dest=/etc/hadoop/conf.pseudo owner=root group=root mode=0644
+- name: copy /etc/hadoop/conf.pseudo to /etc/hadoop/conf.mycluster
+  command: cp -R -p /etc/hadoop/conf.pseudo /etc/hadoop/conf.mycluster create=/etc/hadoop/conf.mycluster
+
+- name: configure Hadoop in /etc/hadoop/conf.mycluster
+  template: src={{ item }} dest=/etc/hadoop/conf.mycluster owner=root group=root mode=0644
   with_items:
     - core-site.xml
     - hdfs-site.xml
@@ -25,8 +28,14 @@
     - hadoop-env.sh
     - topology.data
 
-- name: put topology.sh in /etc/hadoop/conf.pseudo (it must be executable)
-  template: src={{item}} dest=/etc/hadoop/conf.pseudo owner=root group=root mode=0755
+- name: put topology.sh in /etc/hadoop/conf.mycluster (it must be executable)
+  template: src={{ item }} dest=/etc/hadoop/conf.mycluster owner=root group=root mode=0755
   with_items:
     - topology.sh
+
+- name: run update-alternatives to install hadoop configuration
+  command: update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.mycluster 50
+
+- name: run update-alternatives to set hadoop configuration
+  command: update-alternatives --set hadoop-conf /etc/hadoop/conf.mycluster
 
