@@ -1,19 +1,19 @@
 ---
 - name: install hive via yum
-  yum: name={{item}} state=present
+  yum: name={{ item }} state=present
   with_items:
     - hive
     - hive-server2
     - hive-metastore
 
 - name: make symbolic link
-  file: src={{mysql_connector_java_jar}} dest=/usr/lib/hive/lib/mysql-connector-java.jar state=link
+  file: src={{ mysql_connector_java_jar }} dest=/usr/lib/hive/lib/mysql-connector-java.jar state=link
 
 - name: create MySQL database for Hive metastore
   mysql_db:
     name: hive
     login_user: root
-    login_password: "{{mysql_root_password}}"
+    login_password: "{{ mysql_root_password }}"
     state: present
 
 - name: create hive user on MySQL
@@ -24,10 +24,19 @@
     priv: "hive.*:ALL"
     state: present
 
+- name: copy /etc/hive/conf.dist to /etc/hive/conf.mycluster
+  command: cp -R -p /etc/hive/conf.dist /etc/hive/conf.mycluster creates=/etc/hive/conf.mycluster
+
 - name: configre Hive
-  template: src={{item}} dest=/etc/hive/conf/hive-site.xml group=hive owner=hive mode=644
+  template: src={{ item }} dest=/etc/hive/conf/hive-site.xml group=hive owner=hive mode=644
   with_items:
     - hive-site.xml
+
+- name: run update-alternatives to install hive configuration
+  command: update-alternatives --install /etc/hive/conf hive-conf /etc/hive/conf.mycluster 50
+
+- name: run update-alternatives to set hive configuration
+  command: update-alternatives --set hive-conf /etc/hive/conf.mycluster
 
 - name: configure hive-server2
   template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=644
