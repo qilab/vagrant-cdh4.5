@@ -22,7 +22,10 @@
   file: state=directory path={{java_home}} owner=root group=root recurse=yes
 
 - name: Make Java available for system
-  command: 'alternatives --install "/usr/bin/java" "java" "{{java_home}}/bin/java" 2000'
+  command: update-alternatives --install /usr/bin/java java {{java_home}}/bin/java 17000
+
+- name: run update-alternatives to set the installed java
+  command: update-alternatives --set java {{java_home}}/bin/java
 
 - name: Clean up
   file: state=absent path={{java_archive}}
