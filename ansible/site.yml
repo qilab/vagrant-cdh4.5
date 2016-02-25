@@ -4,7 +4,7 @@
   sudo: yes
   roles:
     - common
-    - jdk7
+    - oracle_jdk7
     - cdh_common
 
 - hosts: cdh
