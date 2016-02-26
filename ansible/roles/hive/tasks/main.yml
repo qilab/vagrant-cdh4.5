@@ -28,7 +28,7 @@
   command: cp -R -p /etc/hive/conf.dist /etc/hive/conf.mycluster creates=/etc/hive/conf.mycluster
 
 - name: configre Hive
-  template: src={{ item }} dest=/etc/hive/conf/hive-site.xml group=hive owner=hive mode=644
+  template: src={{ item }} dest=/etc/hive/conf.mycluster group=hive owner=hive mode=0644
   with_items:
     - hive-site.xml
 
@@ -39,7 +39,7 @@
   command: update-alternatives --set hive-conf /etc/hive/conf.mycluster
 
 - name: configure hive-server2
-  template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=644
+  template: src=hive-server2 dest=/etc/default/hive-server2 group=root owner=root mode=0644
   notify:
     - start hive-server2
     - start hive-metastore
