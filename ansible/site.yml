@@ -5,7 +5,16 @@
   roles:
     - common
     - oracle_jdk7
+  tags:
+    - common
+
+- hosts: cdh
+  remote_user: vagrant
+  sudo: yes
+  roles:
     - cdh_common
+  tags:
+    - hadoop
 
 - hosts: cdh
   remote_user: vagrant
@@ -13,12 +22,15 @@
   sudo_user: hdfs
   roles:
     - hadoop_namenode
+  tags:
+    - hadoop
 
 - hosts: cdh
   remote_user: vagrant
   sudo: yes
   roles:
     - hadoop_start
+  tags: hadoop
 
 - hosts: cdh
   remote_user: vagrant
@@ -26,12 +38,16 @@
   sudo_user: hdfs
   roles:
     - hadoop_hdfs_directory
+  tags:
+    - hadoop
 
 - hosts: cdh
   remote_user: vagrant
   sudo: yes
   roles:
     - hadoop_start_resourcemanager
+  tags:
+    - hadoop
 
 - hosts: cdh
   remote_user: vagrant
