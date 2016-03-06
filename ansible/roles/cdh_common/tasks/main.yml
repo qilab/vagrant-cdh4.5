@@ -1,6 +1,6 @@
 ---
 - name: set Cloudera on yum repository
-  template: src=cloudera-cdh4.repo dest=/etc/yum.repos.d/cloudera-cdh4.repo owner=root group=root mode=0644
+  template: src=cloudera-cdh4.repo.j2 dest=/etc/yum.repos.d/cloudera-cdh4.repo owner=root group=root mode=0644
 
 # optional
 - name: add the Cloudera Public GPG Key
@@ -19,7 +19,7 @@
   command: cp -R -p /etc/hadoop/conf.pseudo /etc/hadoop/conf.mycluster creates=/etc/hadoop/conf.mycluster
 
 - name: configure Hadoop in /etc/hadoop/conf.mycluster
-  template: src={{ item }} dest=/etc/hadoop/conf.mycluster owner=root group=root mode=0644
+  template: src={{ item }}.j2 dest=/etc/hadoop/conf.mycluster/{{ item }} owner=root group=root mode=0644
   with_items:
     - core-site.xml
     - hdfs-site.xml
@@ -29,7 +29,7 @@
     - topology.data
 
 - name: put topology.sh in /etc/hadoop/conf.mycluster (it must be executable)
-  template: src={{ item }} dest=/etc/hadoop/conf.mycluster owner=root group=root mode=0755
+  template: src={{ item }}.j2 dest=/etc/hadoop/conf.mycluster/{{ item }} owner=root group=root mode=0755
   with_items:
     - topology.sh
 

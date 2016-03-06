@@ -3,9 +3,10 @@
   command: cp -R -p /etc/hbase/conf.dist /etc/hbase/conf.mycluster creates=/etc/hbase/conf.mycluster
 
 - name: configure HBase in /etc/hbase/conf.mycluster
-  template: src={{ item }} dest=/etc/hbase/conf.mycluster owner=root group=root mode=0644
+  template: src={{ item }}.j2 dest=/etc/hbase/conf.mycluster/{{ items }} owner=root group=root mode=0644
   with_items:
     - hbase-env.sh
+    - hbase-policy.xml
     - hbase-site.xml
     - regionservers
   notify:

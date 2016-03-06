@@ -1,6 +1,6 @@
 ---
 - name: set MariaDB on yum repository
-  template: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo owner=root group=root mode=0644
+  template: src=mariadb.repo.j2 dest=/etc/yum.repos.d/mariadb.repo owner=root group=root mode=0644
 
 - name: install MariaDB
   yum: name={{item}} state=present
@@ -19,5 +19,5 @@
     password: "{{mysql_root_password}}"
 
 - name: put .my.cnf
-  template: src=.my.cnf dest=/root/.my.cnf owner=root mode=0600
+  template: src=.my.cnf.j2 dest=/root/.my.cnf owner=root mode=0600
 
