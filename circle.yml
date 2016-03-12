@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker version
+
+test:
+  override:
+    - docker run -v `pwd`:/test_ansible centos:6.7 sh /test_ansible/vagrant-ansible/provision.sh /test_ansible/ansible
+
