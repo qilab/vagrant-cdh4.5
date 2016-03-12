@@ -1,17 +1,24 @@
 #!/bin/bash
 
-ANSIBLE_PLAYBOOK=/ansible/site.yml
-ANSIBLE_HOSTS=/ansible/hosts
+if [ $# -ne 1 ]; then
+  echo "One argument is needed that tells ANSIBLE_DIR"
+  exit 1
+fi
+
+ANSIBLE_DIR=$1
+
+ANSIBLE_PLAYBOOK=$ANSIBLE_DIR/site.yml
+ANSIBLE_HOSTS=$ANSIBLE_DIR/hosts
 ANSIBLE_HOSTS_TMP=/tmp/ansible_hosts
 
 if [ ! -f $ANSIBLE_PLAYBOOK ]; then
   echo "Cannot find Ansible playbook"
-  exit 1
+  exit 2
 fi
 
 if [ ! -f $ANSIBLE_HOSTS ]; then
   echo "Cannot find Ansible hosts"
-  exit 2
+  exit 3
 fi
 
 if ! [ `which ansible` ]; then
