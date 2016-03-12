@@ -1,22 +1,19 @@
 ---
-- name: iptables stop
-  command: /etc/rc.d/init.d/iptables stop
-
-- name: chkconfig iptables off
-  command: chkconfig iptables off
+- name: iptables stop and chkconfig iptables off
+  service: name=iptables state=stopped enabled=no
 
 - name: chkconfig ip6tables off
-  command: chkconfig ip6tables off
+  service: name=ip6tables state=stopped enabled=no
 
 - name: install libselinux-python
   yum: name=libselinux-python state=present
 
 - name: check SELinux is enforcing
-  shell: getenforce
+  command: /usr/sbin/getenforce
   register: selinux_result
 
 - name: disable SELinux with command
-  shell: setenforce 0
+  command: setenforce 0
   when: selinux_result == "Enforcing"
 
 - name: disable SELinux config
