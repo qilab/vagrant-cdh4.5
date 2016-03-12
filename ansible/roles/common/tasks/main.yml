@@ -16,8 +16,8 @@
   command: setenforce 0
   when: selinux_result == "Enforcing"
 
-- name: disable SELinux config
-  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+#- name: disable SELinux config
+#  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
 
 - name: install dependency modules
   yum: name={{item}} state=present
