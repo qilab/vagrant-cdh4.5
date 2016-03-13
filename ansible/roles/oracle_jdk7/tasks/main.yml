@@ -16,7 +16,7 @@
   when: java_home_check.stat.exists == False
 
 - name: check
-  shell: ll /opt
+  shell: ls -la /opt
 
 - name: Unpack archive
   command: "tar -zxf {{java_archive}} -C {{download_folder}} creates={{java_home}}"
