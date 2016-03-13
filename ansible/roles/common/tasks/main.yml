@@ -33,6 +33,7 @@
     - tcl
     - make
     - wget
+    - tar
     - ruby
     - git
     - vim
