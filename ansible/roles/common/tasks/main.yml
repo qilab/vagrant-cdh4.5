@@ -19,10 +19,10 @@
 #- name: disable SELinux config
 #  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
 
-- name: set DNS1
-  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-eth0 insertafter=EOF line=DNS1=8.8.8.8
-- name: restart network
-  service: name=network state=restarted
+#- name: set DNS1
+#  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-eth0 insertafter=EOF line=DNS1=8.8.8.8
+#- name: restart network
+#  service: name=network state=restarted
 
 - name: install dependency modules
   yum: name={{item}} state=present
