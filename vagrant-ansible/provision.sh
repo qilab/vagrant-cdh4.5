@@ -21,6 +21,9 @@ if [ ! -f $ANSIBLE_HOSTS ]; then
   exit 3
 fi
 
+yum install sed
+sed -i 's/\(^Defaults requiretty\)/#\1/g' /etc/sudoers
+
 if ! [ `which ansible` ]; then
   yum install -y epel-release
   yum install -y sshpass
