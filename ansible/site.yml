@@ -18,8 +18,8 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
-  sudo_user: hdfs
+  become: yes
+  become_user: hdfs
   roles:
     - hadoop_namenode
   tags:
