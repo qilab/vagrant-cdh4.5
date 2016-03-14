@@ -9,7 +9,7 @@
   yum: name=libselinux-python state=present
 
 - name: check SELinux is enforcing
-  command: /usr/sbin/getenforce
+  command: getenforce
   register: selinux_result
 
 - name: disable SELinux with command
