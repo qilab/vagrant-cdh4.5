@@ -1,32 +1,31 @@
 ---
 - name: check java_home directory
-  stat: path={{java_home}}
+  stat: path={{ java_home }}
   register: java_home_check
 
 - name: check java_archive file
-  stat: path={{java_archive}}
+  stat: path={{ java_archive }}
   register: java_archive_check
 
 - name: remove java_archive if it exists and it is empty
-  file: state=absent path={{java_archive}}
+  file: state=absent path={{ java_archive }}
   when: java_archive_check.stat.exists and java_home_check.stat.size == 0
 
 - name: Download Java
-  command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
+  command: "wget -q -O {{ java_archive }} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{ download_url }} creates={{ java_archive }}"
   when: java_home_check.stat.exists == False
 
 - name: Unpack archive
-  command: "tar -zxf {{java_archive}} -C {{download_folder}} creates={{java_home}}"
+  unarchive: src={{ java_archive }} dest={{ download_folder }} copy=no creates={{ java_home }} owner=root group=root
 
 - name: Fix ownership
-  file: state=directory path={{java_home}} owner=root group=root recurse=yes
+  file: state=directory path={{ java_home }} owner=root group=root recurse=yes
 
 - name: Make Java available for system
-  command: update-alternatives --install /usr/bin/java java {{java_home}}/bin/java 17000
+  command: update-alternatives --install /usr/bin/java java {{ java_home }}/bin/java 17000
 
 - name: run update-alternatives to set the installed java
-  command: update-alternatives --set java {{java_home}}/bin/java
+  command: update-alternatives --set java {{ java_home }}/bin/java
 
 - name: Clean up
-  file: state=absent path={{java_archive}}
-
+  file: state=absent path={{ java_archive }}

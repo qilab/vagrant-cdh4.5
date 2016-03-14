@@ -4,7 +4,7 @@
 
 # optional
 - name: add the Cloudera Public GPG Key
-  command: rpm --import http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
+  rpm_key: state=present key=http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
 
 - name: yum clean all
   shell: yum clean all
@@ -16,7 +16,7 @@
   yum: name=hadoop-conf-pseudo state=present
 
 - name: copy /etc/hadoop/conf.pseudo to /etc/hadoop/conf.mycluster
-  command: cp -R -p /etc/hadoop/conf.pseudo /etc/hadoop/conf.mycluster creates=/etc/hadoop/conf.mycluster
+  copy: src=/etc/hadoop/conf.pseudo dest=/etc/hadoop/conf.mycluster directory_mode=yes remote_src=True
 
 - name: configure Hadoop in /etc/hadoop/conf.mycluster
   template: src={{ item }}.j2 dest=/etc/hadoop/conf.mycluster/{{ item }} owner=root group=root mode=0644
@@ -34,8 +34,7 @@
     - topology.sh
 
 - name: run update-alternatives to install hadoop configuration
-  command: update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.mycluster 50
+  alternatives: name=hadoop-conf link=/etc/hadoop/conf path=/etc/hadoop/conf.mycluster
 
 - name: run update-alternatives to set hadoop configuration
   command: update-alternatives --set hadoop-conf /etc/hadoop/conf.mycluster
-

@@ -10,8 +10,9 @@
 
 ## Requirements
 
+* VirtualBox 5.0.0 or later
 * Vagrant 1.7.0 or later
-* Ansible 1.9.0 or later
+* Ansible 2.0.0 or later
 
 ## How to use it?
 
