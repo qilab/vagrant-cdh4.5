@@ -9,5 +9,5 @@ dependencies:
 
 test:
   override:
-    - docker run -v `pwd`:/test_ansible jdeathe/centos-ssh:centos-6 sh /test_ansible/vagrant-ansible/provision.sh /test_ansible/ansible
+    - docker run -t -v `pwd`:/test_ansible jdeathe/centos-ssh:centos-6 sh /test_ansible/vagrant-ansible/provision.sh /test_ansible/ansible
 

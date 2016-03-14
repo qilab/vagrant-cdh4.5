@@ -24,8 +24,8 @@
 #- name: restart network
 #  service: name=network state=restarted
 
-- name: Defaults requiretty
-  lineinfile: dest=/etc/sudoers state=present regexp="^Defaults requiretty" line="#Defaults requiretty"
+#- name: Defaults requiretty, configure sudoers
+#  lineinfile: dest=/etc/sudoers state=present regexp="^Defaults requiretty" line="#Defaults requiretty"
 
 - name: install dependency modules
   yum: name={{item}} state=present
