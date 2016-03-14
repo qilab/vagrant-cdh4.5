@@ -38,3 +38,4 @@
 
 - name: run update-alternatives to set hadoop configuration
   command: update-alternatives --set hadoop-conf /etc/hadoop/conf.mycluster
+
