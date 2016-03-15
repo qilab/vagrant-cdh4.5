@@ -30,6 +30,7 @@
 - name: install dependency modules
   yum: name={{item}} state=present
   with_items:
+    - sudo
     - gcc
     - kernel-devel
     - perl
