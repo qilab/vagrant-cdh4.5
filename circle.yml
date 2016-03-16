@@ -1,0 +1,14 @@
+machine:
+  python:
+    version: 2.7.10
+
+dependencies:
+  pre:
+    - pip install ansible
+  override:
+    - ansible --version
+
+test:
+  override:
+    - ansible-playbook --syntax-check -i ansible/hosts ansible/site.yml
+
