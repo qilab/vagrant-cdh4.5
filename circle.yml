@@ -8,6 +8,7 @@ dependencies:
   pre:
     - pip install ansible
   override:
+    - ansible --version
     - docker info
     - docker version
 
