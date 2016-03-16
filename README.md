@@ -1,5 +1,7 @@
 # vagrant-cdh4.5
 
+[![Circle CI](https://circleci.com/gh/qilab-/vagrant-cdh4.5/tree/master.svg?style=svg)](https://circleci.com/gh/qilab-/vagrant-cdh4.5/tree/master)
+
 * CentOS 6.7 as a guest OS
 * CDH 4.5 (YARN) in Pseudo-distributed Mode
 * HBase in Pseudo-distributed Mode
