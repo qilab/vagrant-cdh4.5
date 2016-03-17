@@ -32,6 +32,8 @@ if ! [ `which ansible` ]; then
   pip install ansible
 fi
 
+useradd -c HBase -d /var/run/hbase -s /bin/bash hbase
+
 cp $ANSIBLE_HOSTS $ANSIBLE_HOSTS_TMP
 chmod -x $ANSIBLE_HOSTS_TMP
 echo "Running Ansible"

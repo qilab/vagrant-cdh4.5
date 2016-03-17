@@ -9,9 +9,9 @@
     - hbase-policy.xml
     - hbase-site.xml
     - regionservers
-#  notify:
-#    - restart hbase-master
-#    - restart hbase-regionserver
+  notify:
+    - restart hbase-master
+    - restart hbase-regionserver
 
 - name: run update-alternatives to install hbase configuration
   command: update-alternatives --install /etc/hbase/conf hbase-conf /etc/hbase/conf.mycluster 50
