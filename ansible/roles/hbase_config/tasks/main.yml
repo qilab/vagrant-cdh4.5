@@ -9,9 +9,9 @@
     - hbase-policy.xml
     - hbase-site.xml
     - regionservers
-#  notify:
-#    - restart hbase-master
-#    - restart hbase-regionserver
+  notify:
+    - restart hbase-master
+    - restart hbase-regionserver
 
 - name: run update-alternatives to install hbase configuration
   command: update-alternatives --install /etc/hbase/conf hbase-conf /etc/hbase/conf.mycluster 50
@@ -19,9 +19,9 @@
 - name: run update-alternatives to set hbase configuration
   command: update-alternatives --set hbase-conf /etc/hbase/conf.mycluster
 
-- name: ensure HBase is running
-  service: name={{ item }} state=started enabled=yes
-  with_items:
-    - hbase-master
-    - hbase-regionserver
+#- name: ensure HBase is running
+#  service: name={{ item }} state=started enabled=yes
+#  with_items:
+#    - hbase-master
+#    - hbase-regionserver
 
