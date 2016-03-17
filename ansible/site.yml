@@ -68,7 +68,8 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
+  become_user: root
   roles:
     - hbase_master
     - hbase_regionserver
