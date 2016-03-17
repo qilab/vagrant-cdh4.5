@@ -20,12 +20,12 @@
   command: update-alternatives --set hbase-conf /etc/hbase/conf.mycluster
 
 - name: ensure HBase is running
-  service: name={{ item }} state=started enabled=yes
+  service: name={{ item }} state=started #enabled=yes
   with_items:
     - hbase-master
     - hbase-regionserver
-  ignore_errors: yes
+#  ignore_errors: yes
 
-- name: cat /var/log/secure
-  shell: cat /var/log/secure
+#- name: cat /var/log/secure
+#  shell: cat /var/log/secure
 
