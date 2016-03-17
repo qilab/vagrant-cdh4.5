@@ -33,6 +33,7 @@ if ! [ `which ansible` ]; then
 fi
 
 useradd -c HBase -d /var/run/hbase -s /bin/bash hbase
+echo "hbase - nofile 65536" > /etc/security/limits.conf
 
 cp $ANSIBLE_HOSTS $ANSIBLE_HOSTS_TMP
 chmod -x $ANSIBLE_HOSTS_TMP
