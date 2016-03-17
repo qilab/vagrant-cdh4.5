@@ -15,5 +15,5 @@ dependencies:
 test:
   override:
     - ansible-playbook --syntax-check -i ansible/hosts ansible/site.yml
-    - docker run --privileged=true -t -i -v `pwd`:/test_ansible centos:6.7 sh /test_ansible/vagrant-ansible/provision.sh /test_ansible/ansible
+    - docker run --privileged=true -t -i -v `pwd`:/test_ansible centos:6.6 sh /test_ansible/vagrant-ansible/provision.sh /test_ansible/ansible
 
