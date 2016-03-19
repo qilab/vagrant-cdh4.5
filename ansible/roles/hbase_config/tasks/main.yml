@@ -32,6 +32,7 @@
 
 - name: check HBase is running
   command: service hbase-master status
+  when: test is undefined or not test
 
 #- name: cat /var/log/secure
 #  shell: cat /var/log/secure
