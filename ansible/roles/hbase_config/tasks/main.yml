@@ -27,7 +27,8 @@
   with_items:
     - hbase-master
     - hbase-regionserver
-  ignore_errors: yes
+  #ignore_errors: yes
+  when: test is undefined or not test
 
 - name: check HBase is running
   command: service hbase-master status

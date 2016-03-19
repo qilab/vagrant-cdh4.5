@@ -35,6 +35,7 @@
 
 - name: run update-alternatives to install hadoop configuration
   command: update-alternatives --install /etc/hadoop/conf hadoop-conf /etc/hadoop/conf.mycluster 50
+  #alternatives: name=hadoop-conf link=/etc/hadoop/conf path=/etc/hadoop/conf.mycluster
 
 - name: run update-alternatives to set hadoop configuration
   command: update-alternatives --set hadoop-conf /etc/hadoop/conf.mycluster
