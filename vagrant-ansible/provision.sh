@@ -39,5 +39,5 @@ cp $ANSIBLE_HOSTS $ANSIBLE_HOSTS_TMP
 chmod -x $ANSIBLE_HOSTS_TMP
 echo "Running Ansible"
 #ansible-playbook -i $ANSIBLE_HOSTS_TMP $ANSIBLE_PLAYBOOK -tags="common,hadoop" -v --connection=local
-ansible-playbook -i $ANSIBLE_HOSTS_TMP $ANSIBLE_PLAYBOOK -v --connection=local
+ansible-playbook -i $ANSIBLE_HOSTS_TMP $ANSIBLE_PLAYBOOK --extra-vars "test=yes" -v --connection=local
 
