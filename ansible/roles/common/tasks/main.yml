@@ -5,6 +5,10 @@
 #- name: chkconfig ip6tables off
 #  service: name=ip6tables state=stopped enabled=no
 
+- name: test
+  command: echo "test is undefined or not test"
+  when: test is undefined or not test
+
 - name: install libselinux-python
   yum: name=libselinux-python state=present
 
