@@ -10,16 +10,13 @@
 - name: install libselinux-python
   yum: name=libselinux-python state=present
 
-- name: check SELinux is enforcing
+- name: check SELinux status
   command: getenforce
   register: selinux_result
 
-- name: disable SELinux with command
-  command: setenforce 0
-  when: selinux_result == "Enforcing"
-
-- name: disable SELinux config
-  lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+- name: disable SELinux
+  selinux: state=disabled
+  when: selinux_result.stdout != "Disabled"
 
 - name: install dependency modules
   yum: name={{item}} state=present
