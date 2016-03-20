@@ -1,9 +1,11 @@
 ---
 - name: iptables stop chkconfig iptables off
   service: name=iptables state=stopped enabled=no
+  ignore_errors: yes
 
 - name: chkconfig ip6tables off
   service: name=ip6tables state=stopped enabled=no
+  ignore_errors: yes
 
 - name: install libselinux-python
   yum: name=libselinux-python state=present
