@@ -1,7 +1,7 @@
 ---
 - name: restart hbase-master
-  service: name=hbase-master state=restarted
+  service: name=hbase-master state=restarted enabled=yes
 
 - name: restart hbase-regionserver
-  service: name=hbase-regionserver state=restarted
+  service: name=hbase-regionserver state=restarted enabled=yes
 
