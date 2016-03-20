@@ -1,4 +1,6 @@
 machine:
+  services:
+    - docker
   python:
     version: 2.7.10
 
@@ -7,8 +9,11 @@ dependencies:
     - pip install ansible
   override:
     - ansible --version
+    - docker info
+    - docker version
 
 test:
   override:
     - ansible-playbook --syntax-check -i ansible/hosts ansible/site.yml
+    - docker run --privileged -it -v `pwd`:/test_ansible centos:6.7 sh /test_ansible/test/provision.sh
 
