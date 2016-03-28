@@ -4,7 +4,7 @@
 
 # optional
 - name: add the Cloudera Public GPG Key
-  command: rpm --import http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
+  rpm_key: state=present key=http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
 
 - name: yum clean all
   shell: yum clean all
