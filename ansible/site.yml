@@ -1,7 +1,7 @@
 ---
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - common
     - oracle_jdk7
@@ -10,7 +10,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - cdh_common
   tags:
@@ -18,8 +18,8 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
-  sudo_user: hdfs
+  become: yes
+  become_user: hdfs
   roles:
     - hadoop_namenode
   tags:
@@ -27,15 +27,15 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - hadoop_start
   tags: hadoop
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
-  sudo_user: hdfs
+  become: yes
+  become_user: hdfs
   roles:
     - hadoop_hdfs_directory
   tags:
@@ -43,7 +43,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - hadoop_start_resourcemanager
   tags:
@@ -51,7 +51,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - zookeeper_server
   tags:
@@ -59,8 +59,8 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
-  sudo_user: hdfs
+  become: yes
+  become_user: hdfs
   roles:
     - hbase_hdfs_directory
   tags:
@@ -68,7 +68,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - hbase_master
     - hbase_regionserver
@@ -78,7 +78,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - mariadb
   tags:
@@ -86,7 +86,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - mysql_connector_java
   tags:
@@ -94,7 +94,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - hive
   tags:
@@ -102,7 +102,7 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - redis
   tags:
@@ -110,9 +110,8 @@
 
 - hosts: cdh
   remote_user: vagrant
-  sudo: yes
+  become: yes
   roles:
     - sbt
   tags:
     - sbt
-
