@@ -11,4 +11,3 @@
 
 - name: fix ownership
   file: state=directory path={{ mysql_connector_java_home }} owner=root group=root recurse=yes
-
